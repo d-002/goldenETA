@@ -1,6 +1,7 @@
 # GoldenETA
 
-Utilities for golden berry runs in Celeste.
+Stats and utilities for golden strawberry runs in Celeste.
+
 Estimate the time it will take to complete a run.
 
 # CURRENT MOD PROGRESS: 0%
@@ -16,7 +17,6 @@ Estimate the time it will take to complete a run.
 - settings:
     - hotkeys: toggle menu, toggle practice / runs, reset consistency for current room, for current path, delete all stats for the current path
     - number of lines in menu
-- controller support
 - popup when changing between practice and runs, or when toggling logging on and off
 - handle exiting the game while logging is running
 - menu to display stats
@@ -25,6 +25,9 @@ Estimate the time it will take to complete a run.
 - display consistency overall and this session in menu
 - when no runs have been made in a room in the path, do not estimate anything (and add a message)
 - confirm dialogue when resetting consistency, or path stats
+
+Enhancements:
+- Toggle for whether to restart the chapter when starting runs
 
 ## Logic:
 ### Estimated remaining time:
