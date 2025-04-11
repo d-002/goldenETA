@@ -16,25 +16,27 @@ public static class KeysListeners
         if (settings.StopLogging.Pressed) StopLogging();
     }
     
-    public static void ToggleMenu()
+    private static void ToggleMenu()
     {
         GoldenETAModule.Settings.ShowMenu = !GoldenETAModule.Settings.ShowMenu;
     }
 
-    public static void StartPractice()
+    private static void StartPractice()
     {
-        Tooltip.Show("GoldenETA: Started practice mode");
         Mode = LoggingMode.Practice;
+        Tooltip.Show($"GoldenETA: Started {Mode} mode");
     }
 
-    public static void StartRuns()
+    private static void StartRuns()
     {
-        Tooltip.Show("GoldenETA: Started runs");
         Mode = LoggingMode.Runs;
+        Tooltip.Show($"GoldenETA: Started {Mode} mode");
     }
 
-    public static void StopLogging()
+    private static void StopLogging()
     {
+        if (Mode == LoggingMode.None) return;
+        
         Tooltip.Show($"GoldenETA: Ended {Mode} mode");
         Mode = LoggingMode.None;
     }
