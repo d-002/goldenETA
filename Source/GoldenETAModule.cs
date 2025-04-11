@@ -1,4 +1,5 @@
 ﻿using System;
+using Monocle;
 
 namespace Celeste.Mod.GoldenETA;
 
@@ -25,10 +26,21 @@ public class GoldenETAModule : EverestModule {
 
     public override void Load()
     {
-        Everest.Events.Level.OnTransitionTo += Toast.TempToast;
+        //Everest.Events.Level.OnTransitionTo += ;
     }
 
     public override void Unload() {
-        Everest.Events.Level.OnTransitionTo -= Toast.TempToast;
+    }
+
+    private void OnPlayerUpdate(On.Celeste.Player.orig_Update orig, Player self)
+    {
+        orig(self);
+
+        GoldenETAModuleSettings settings = Settings;
+
+        if (settings.ToggleMenu.Pressed) KeysListeners.ToggleMenu();
+        if (settings.StartPractice.Pressed) KeysListeners.StartPractice();
+        if (settings.StartRuns.Pressed) KeysListeners.StartRuns();
+        if (settings.StopLogging.Pressed) KeysListeners.StopLogging();
     }
 }
