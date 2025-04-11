@@ -17,19 +17,18 @@ public class GoldenETAModule : EverestModule {
     public GoldenETAModule() {
         Instance = this;
 #if DEBUG
-        // debug builds use verbose logging
         Logger.SetLogLevel(nameof(GoldenETAModule), LogLevel.Verbose);
 #else
-        // release builds use info logging to reduce spam in log files
         Logger.SetLogLevel(nameof(GoldenETAModule), LogLevel.Info);
 #endif
     }
 
-    public override void Load() {
-        // TODO: apply any hooks that should always be active
+    public override void Load()
+    {
+        Everest.Events.Level.OnTransitionTo += Toast.TempToast;
     }
 
     public override void Unload() {
-        // TODO: unapply any hooks applied in Load()
+        Everest.Events.Level.OnTransitionTo -= Toast.TempToast;
     }
 }
