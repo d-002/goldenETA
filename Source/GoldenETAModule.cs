@@ -1,4 +1,5 @@
 ﻿using System;
+using Celeste.Mod.GoldenETA.Runs;
 
 namespace Celeste.Mod.GoldenETA;
 
@@ -14,8 +15,12 @@ public class GoldenETAModule : EverestModule {
     public override Type SaveDataType => typeof(GoldenETAModuleSaveData);
     public static GoldenETAModuleSaveData SaveData => (GoldenETAModuleSaveData) Instance._SaveData;
 
+    private static readonly KeysListeners KeysListeners = new();
+    public static readonly RunsManager RunsManager = new();
+
     public GoldenETAModule() {
         Instance = this;
+        
 #if DEBUG
         Logger.SetLogLevel(nameof(GoldenETAModule), LogLevel.Verbose);
 #else
@@ -26,9 +31,11 @@ public class GoldenETAModule : EverestModule {
     public override void Load()
     {
         On.Celeste.Player.Update += KeysListeners.OnPlayerUpdate;
+        RunsManager.Load();
     }
 
     public override void Unload() {
         On.Celeste.Player.Update -= KeysListeners.OnPlayerUpdate;
+        RunsManager.Unload();
     }
 }

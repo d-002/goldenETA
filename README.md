@@ -28,6 +28,7 @@ Estimate the time it will take to complete a run.
 
 Enhancements:
 - Toggle for whether to restart the chapter when starting runs
+- Interactive path creator by doing a run
 
 ## Logic:
 ### Estimated remaining time:
