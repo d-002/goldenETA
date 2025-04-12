@@ -6,11 +6,11 @@ public class Run : BaseRun
     
     protected override void OnRoomFail()
     {
-        Tooltip.Show($"Died, room time: {TimeRoom():F3}s");
+        Tooltip.Show($"F{TimeRoom():F3}");
     }
 
     protected override void OnRoomSuccess(LevelData next)
     {
-        Tooltip.Show($"Room time: {TimeRoom(next):F3}s");
+        Tooltip.Show($"S{TimeRoom(next):F3}");
     }
 }

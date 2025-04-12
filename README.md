@@ -27,6 +27,7 @@ Estimate the time it will take to complete a run.
 - confirm dialogue when resetting consistency, or path stats
 
 Enhancements:
+- Submenu
 - Toggle for whether to restart the chapter when starting runs
 - Interactive path creator by doing a run
 
