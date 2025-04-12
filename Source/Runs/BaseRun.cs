@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Monocle;
 
 namespace Celeste.Mod.GoldenETA.Runs;
@@ -9,10 +8,13 @@ public abstract class BaseRun
     protected float RoomStartTime;
     protected LevelData CurrentRoom;
 
-    protected static float Now => DateTimeOffset.Now.ToUnixTimeMilliseconds() * .001f;
+    private readonly LoggingMode _mode;
 
-    public BaseRun()
+    private static float Now => Engine.Scene.TimeActive;
+
+    protected BaseRun(LoggingMode mode)
     {
+        _mode = mode;
         Everest.Events.Level.OnTransitionTo += OnTransition;
         Everest.Events.Player.OnDie += OnDie;
     }
@@ -34,27 +36,34 @@ public abstract class BaseRun
         
     }
 
-    protected float TimeNewRoom(LevelData next)
+    protected float TimeRoom(LevelData next = null)
     {
+        // null: stay in the same room
+        // otherwise, go to this new room
+        
         float now = Now;
         float time = now - RoomStartTime;
         
         RoomStartTime = now;
-        CurrentRoom = next;
+        if (next != null) CurrentRoom = next;
 
         return time;
     }
 
     private void OnDie(Player player)
     {
+        if (GoldenETAModule.RunsManager.Mode != _mode) return;
+        
         OnRoomFail();
     }
 
     private void OnTransition(Level level, LevelData next, Vector2 direction)
     {
+        if (GoldenETAModule.RunsManager.Mode != _mode) return;
+        
         OnRoomSuccess(next);
     }
 
-    public abstract void OnRoomFail();
-    public abstract void OnRoomSuccess(LevelData next);
+    protected abstract void OnRoomFail();
+    protected abstract void OnRoomSuccess(LevelData next);
 }

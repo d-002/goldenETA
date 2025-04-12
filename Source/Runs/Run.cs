@@ -1,16 +1,16 @@
-﻿using Monocle;
-
-namespace Celeste.Mod.GoldenETA.Runs;
+﻿namespace Celeste.Mod.GoldenETA.Runs;
 
 public class Run : BaseRun
 {
-    public override void OnRoomFail()
+    public Run() : base(LoggingMode.Runs) { }
+    
+    protected override void OnRoomFail()
     {
-        Tooltip.Show("Died");
+        Tooltip.Show($"Died, room time: {TimeRoom():F3}s");
     }
 
-    public override void OnRoomSuccess(LevelData next)
+    protected override void OnRoomSuccess(LevelData next)
     {
-        Tooltip.Show($"Room time: {TimeNewRoom(next):3F}");
+        Tooltip.Show($"Room time: {TimeRoom(next):F3}s");
     }
 }
