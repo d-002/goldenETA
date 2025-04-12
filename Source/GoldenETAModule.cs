@@ -1,4 +1,5 @@
 ﻿using System;
+using Celeste.Mod.GoldenETA.Path;
 using Celeste.Mod.GoldenETA.Runs;
 
 namespace Celeste.Mod.GoldenETA;
@@ -17,6 +18,7 @@ public class GoldenETAModule : EverestModule {
 
     private static readonly KeysListeners KeysListeners = new();
     public static readonly RunsManager RunsManager = new();
+    public static readonly PathsLoader PathsLoader = new();
 
     public GoldenETAModule() {
         Instance = this;

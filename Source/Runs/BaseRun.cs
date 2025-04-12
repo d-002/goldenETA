@@ -31,9 +31,10 @@ public abstract class BaseRun
         CurrentRoom = ((Level)Engine.Scene).Session.LevelData;
     }
 
-    public void Stop()
+    public void Stop(bool pathSuccess)
     {
-        
+        if (pathSuccess) OnRoomSuccess(null);
+        OnRoomFail();
     }
 
     protected float TimeRoom(LevelData next = null)

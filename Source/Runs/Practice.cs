@@ -1,6 +1,4 @@
-﻿using Monocle;
-
-namespace Celeste.Mod.GoldenETA.Runs;
+﻿namespace Celeste.Mod.GoldenETA.Runs;
 
 public class Practice : BaseRun
 {

@@ -16,7 +16,7 @@ public class RunsManager
 
     public void Unload()
     {
-        _currentRun?.Stop();
+        _currentRun?.Stop(false);
         
         _run.Unload();
         _practice.Unload();
@@ -27,7 +27,7 @@ public class RunsManager
         if (Mode == LoggingMode.Practice) return;
         Mode = LoggingMode.Practice;
         
-        _currentRun?.Stop();
+        _currentRun?.Stop(false);
         _practice.Start();
         _currentRun = _practice;
         
@@ -39,19 +39,19 @@ public class RunsManager
         if (Mode == LoggingMode.Runs) return;
         Mode = LoggingMode.Runs;
         
-        _currentRun?.Stop();
+        _currentRun?.Stop(false);
         _run.Start();
         _currentRun = _run;
         
         Tooltip.Show($"GoldenETA: Started {Mode} mode");
     }
 
-    public void StopLogging()
+    public void StopLogging(bool pathSuccess)
     {
         if (Mode == LoggingMode.None) return;
         Mode = LoggingMode.None;
         
-        _currentRun?.Stop();
+        _currentRun?.Stop(pathSuccess);
         
         Tooltip.Show($"GoldenETA: Ended {Mode} mode");
     }
